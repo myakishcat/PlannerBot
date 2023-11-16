@@ -26,4 +26,5 @@ public class Task implements Entity {
         System.out.print(deadline + "\t");
         System.out.print(description + "\t");
     }
+
 }

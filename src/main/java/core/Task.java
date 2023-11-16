@@ -1,3 +1,7 @@
+package core;
+
+import core.Entity;
+
 public class Task implements Entity {
     private String name;
     private String deadline;
@@ -21,10 +25,8 @@ public class Task implements Entity {
     }
 
     @Override
-    public void print(){
-        System.out.print(name + "\t");
-        System.out.print(deadline + "\t");
-        System.out.print(description + "\t");
+    public String toString(){
+        return "";
     }
 
 }

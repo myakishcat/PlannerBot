@@ -1,3 +1,7 @@
+package core;
+
+import core.Entity;
+
 public class Event implements Entity {
 
     private String name;
@@ -19,10 +23,7 @@ public class Event implements Entity {
     public void setDescription(String description) { this.description = description; }
 
     @Override
-    public void print(){
-        System.out.print(name + "\t");
-        System.out.print(start + "\t");
-        System.out.print(end + "\t");
-        System.out.print(description + "\t");
+    public String toString(){
+        return "";
     }
 }

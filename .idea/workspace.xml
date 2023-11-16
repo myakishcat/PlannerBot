@@ -4,13 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c36a01b-0f89-451a-9a35-f1ce81ca22d1" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/EventList.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/SpreadSheet.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/TaskList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Command.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Command.java" afterDir="false" />
+    <list default="true" id="1c36a01b-0f89-451a-9a35-f1ce81ca22d1" name="Changes" comment="Task1 Мякишева">
+      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Command.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Event.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Task.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/telegramBot/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/telegramBot/Bot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -43,7 +44,7 @@
   &quot;associatedIndex&quot;: 0
 }</component>
   <component name="ProjectId" id="2Y5cYoeXs43N40Le8zmizICic6z" />
-  <component name="ProjectLevelVcsManager">
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
     <ConfirmationsSetting value="2" id="Add" />
   </component>
   <component name="ProjectViewState">
@@ -54,7 +55,7 @@
   "keyToString": {
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "html-help",
+    "git-widget-placeholder": "master",
     "ignore.virus.scanning.warn.message": "true"
   }
 }]]></component>
@@ -94,5 +95,20 @@
       <updated>1699818934542</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="Task1 Мякишева" />
+    <option name="LAST_COMMIT_MESSAGE" value="Task1 Мякишева" />
   </component>
 </project>

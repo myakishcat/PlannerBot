@@ -1,11 +1,12 @@
 package telegramBot;
 
+import core.Handler;
+import core.Reqest;
+import core.Response;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
 import org.telegram.telegrambots.meta.api.objects.Update;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
-
-
 
 public class Bot extends TelegramLongPollingBot {
     @Override
@@ -14,50 +15,13 @@ public class Bot extends TelegramLongPollingBot {
             return;
         }
 
-        String chatID = update.getMessage().getChatId().toString();
+        String chatId = update.getMessage().getChatId().toString();
         String text = update.getMessage().getText();
 
-        switch (text){
-            case "/help" -> helpCommand(chatID);
-            case "/deadlines" -> deadlinesCommand(chatID);
-//                case "/address" -> addressCommand(chatID);
-//                case "/schedule" -> Command.schedule();
-//                case "/newtask" -> newTaskCommand(chatID);
-//                case "/deltask" -> Command.delTask();
-//                case "/changetask" -> Command.changeTask();
-//                case "/newevent" -> Command.newEvent();
-//                case "/delevent" -> Command.delEvent();
-//                case "/changeevent" -> Command.changeEvent();
-            default -> unknownCommand(chatID);
-        }
-    }
+        Reqest reqest = new Reqest(text);
+        Response response = Handler.handle(reqest);
 
-
-    private static final String COMMAND_LIST = """
-            <b>Список команд бота:</b>\s
-            /help - <i>вывод справки по командам</i>
-            /deadlines - <i>вывод имеющихся заданий</i>
-            /schedule - <i>вывод запланированных мероприятий</i>
-            /newtask - <i>добавить новую задачу</i>
-            /deltask - <i>удалить задачу</i>
-            /changetask - <i>изменить детали задания</i>
-            /newevent - <i>запланировать новое мероприятие</i>
-            /delevent - <i>удалить мероприятие</i>
-            /changeevent - <i>изменить детали мероприятия</i>
-            """;
-
-    public void helpCommand(String chatID){
-        SendMessage sendMessage = new SendMessage(chatID, COMMAND_LIST);
-        sendMessage.enableHtml(true);
-        try{
-            this.execute(sendMessage);
-        } catch (TelegramApiException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
-    public void deadlinesCommand(String chatID){
-        SendMessage sendMessage = new SendMessage(chatID, "Все задачи: ...");
+        SendMessage sendMessage = new SendMessage(chatId, response.getResponse());
         try{
             this.execute(sendMessage);
         } catch (TelegramApiException e) {
@@ -76,25 +40,14 @@ public class Bot extends TelegramLongPollingBot {
 //        }
 //    }
 
-    public void unknownCommand(String chatID){
-        SendMessage sendMessage = new SendMessage(chatID, "Я не знаю такой команды");
-        try{
-            this.execute(sendMessage);
-        } catch (TelegramApiException e) {
-            throw new RuntimeException(e);
-        }
-    }
-
     @Override
     public String getBotUsername() {
-        return "individual_planner_bot";
+        return "${bot.name}";
     }
 
     @Override
     public String getBotToken(){
-        return "6564881301:AAHgSDGBgRoLdrnt7Bl-1LZWmBfW5F9hZzE";
+        return "${bot.token}";
     }
-
-
 }
 

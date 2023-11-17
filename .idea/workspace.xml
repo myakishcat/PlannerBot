@@ -4,14 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c36a01b-0f89-451a-9a35-f1ce81ca22d1" name="Changes" comment="Task1 Мякишева">
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="1c36a01b-0f89-451a-9a35-f1ce81ca22d1" name="Changes" comment="Task2 Architecture changes">
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/Handler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/Reqest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/core/Response.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/resources/application.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/telegramBot/BotApi.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Command.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Entity.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Entity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Event.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/core/Task.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/core/Task.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/telegramBot/Bot.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/telegramBot/Bot.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +24,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
+        <option value="Enum" />
       </list>
     </option>
   </component>
@@ -51,14 +55,14 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "master",
-    "ignore.virus.scanning.warn.message": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;master&quot;,
+    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="CreateClassDialog.RecentsKey">
       <recent name="telegramBot" />
@@ -94,6 +98,15 @@
       <option name="presentableId" value="Default" />
       <updated>1699818934542</updated>
     </task>
+    <task id="LOCAL-00001" summary="Task2 Architecture changes">
+      <option name="closed" value="true" />
+      <created>1700127295629</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1700127295629</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -109,6 +122,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Task1 Мякишева" />
-    <option name="LAST_COMMIT_MESSAGE" value="Task1 Мякишева" />
+    <MESSAGE value="Task2 Architecture changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Task2 Architecture changes" />
   </component>
 </project>

@@ -1,7 +1,5 @@
 package core;
 
-import core.Entity;
-
 public class Task implements Entity {
     private String name;
     private String deadline;

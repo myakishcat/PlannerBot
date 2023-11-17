@@ -1,7 +1,5 @@
 package core;
 
-import core.Entity;
-
 public class Event implements Entity {
 
     private String name;

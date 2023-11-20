@@ -1,10 +1,18 @@
 package core;
 
+import model.User;
+import model.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.sql.Timestamp;
+
 /**
  * класс обрабатывает запрос от пользователя и возвращает ответ на него
  */
 public class Handler {
 
+    @Autowired
+    private static UserRepository userRepository;
     private static final String COMMAND_LIST =
             """
             <b>Список команд бота:</b>
@@ -19,9 +27,13 @@ public class Handler {
             /changeevent - <i>изменить детали мероприятия</i>
             """;
 
-    public static Response handle(Reqest reqest){
+    public static Response handle(Reqest reqest) {
 
-        switch (reqest.getReqest()){
+        Response response = null;
+        switch (reqest.getReqestText()) {
+            case "/start" -> {
+                response = startCommand(reqest);
+            }
 //            case "/help" -> helpCommand();
 //            case "/deadlines" -> deadlinesCommand();
 //            case "/address" -> addressCommand();
@@ -35,6 +47,26 @@ public class Handler {
 //            default -> unknownCommand();
         }
 
-        return new Response("");
+        return response;
+    }
+
+    private static Response startCommand(Reqest reqest) {
+        registerUser(reqest);
+        String startMessage =
+                """
+                Приветственная строка бота
+                """;
+        return new Response(startMessage);
+    }
+
+    private static void registerUser(Reqest reqest) {
+        if(userRepository.findById(reqest.getChatId()).isEmpty()){
+            User user = new User(reqest.getChatId(), new Timestamp(System.currentTimeMillis()));
+            user.setFirstName(reqest.getChat().getFirstName());
+            user.setLastName(reqest.getChat().getLastName());
+            user.setUserName(reqest.getChat().getUserName());
+
+            userRepository.save(user);
+        }
     }
 }

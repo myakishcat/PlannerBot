@@ -13,28 +13,17 @@ public class Handler {
 
     @Autowired
     private static UserRepository userRepository;
-    private static final String COMMAND_LIST =
-            """
-            <b>Список команд бота:</b>
-            /help - <i>вывод справки по командам</i>
-            /deadlines - <i>вывод имеющихся заданий</i>
-            /schedule - <i>вывод запланированных мероприятий</i>
-            /newtask - <i>добавить новую задачу</i>
-            /deltask - <i>удалить задачу</i>
-            /changetask - <i>изменить детали задания</i>
-            /newevent - <i>запланировать новое мероприятие</i>
-            /delevent - <i>удалить мероприятие</i>
-            /changeevent - <i>изменить детали мероприятия</i>
-            """;
 
-    public static Response handle(Reqest reqest) {
+    public static Response handle(Request request) {
 
         Response response = null;
-        switch (reqest.getReqestText()) {
+        switch (request.getRequestText()) {
             case "/start" -> {
-                response = startCommand(reqest);
+                response = startCommand(request);
             }
-//            case "/help" -> helpCommand();
+            case "/help" -> {
+                response = helpCommand(request);
+            }
 //            case "/deadlines" -> deadlinesCommand();
 //            case "/address" -> addressCommand();
 //            case "/schedule" -> Command.schedule();
@@ -44,27 +33,50 @@ public class Handler {
 //            case "/newevent" -> Command.newEvent();
 //            case "/delevent" -> Command.delEvent();
 //            case "/changeevent" -> Command.changeEvent();
-//            default -> unknownCommand();
+            default -> {
+                response = unknownCommand(request);
+            }
         }
 
         return response;
     }
 
-    private static Response startCommand(Reqest reqest) {
-        registerUser(reqest);
+    private static Response startCommand(Request request) {
+//        registerUser(reqest);
         String startMessage =
                 """
-                Приветственная строка бота
+                <b>Привет! Я - бот Планер.</b>
+                Я могу записывать ваши задачи и мероприятия, а потом напоминать о них.
+                Список всех доступных команд перечислен в Меню (слева от поля ввода) и по команде /help.
                 """;
-        return new Response(startMessage);
+        return new Response(startMessage, false);
     }
 
-    private static void registerUser(Reqest reqest) {
-        if(userRepository.findById(reqest.getChatId()).isEmpty()){
-            User user = new User(reqest.getChatId(), new Timestamp(System.currentTimeMillis()));
-            user.setFirstName(reqest.getChat().getFirstName());
-            user.setLastName(reqest.getChat().getLastName());
-            user.setUserName(reqest.getChat().getUserName());
+    private static Response helpCommand(Request request) {
+        String startMessage =
+                """
+                <b>Бот-планер предназначен для планирования имеющихся у вас задач и мероприятий</b>
+                Все доступные команды появились на кнопках под клавиатурой.
+                <i>По имеющимся багам писать авторам @Manon_Danon, @dme7L</i>
+                """;
+        return new Response(startMessage, true);
+    }
+
+    private static Response unknownCommand(Request request) {
+        String defaultMessage =
+                """
+                <b>Я не знаю такой команды.</b> Доступные команды перечислены в Меню или по команде /help
+                """;
+        return new Response(defaultMessage, false);
+    }
+
+    private static void registerUser(Request request) {
+
+        if(userRepository.findById(request.getChatId()).isEmpty()){
+            User user = new User(request.getChatId(), new Timestamp(System.currentTimeMillis()));
+            user.setFirstName(request.getChat().getFirstName());
+            user.setLastName(request.getChat().getLastName());
+            user.setUserName(request.getChat().getUserName());
 
             userRepository.save(user);
         }

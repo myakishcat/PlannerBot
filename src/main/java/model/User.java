@@ -1,8 +1,11 @@
 package model;
 
+import org.springframework.data.annotation.Id;
+
 import java.sql.Timestamp;
 
 public class User {
+
 
     private final Long chatId;
     private String firstName;

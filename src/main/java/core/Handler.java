@@ -22,7 +22,7 @@ public class Handler {
                 response = startCommand(request);
             }
             case "/help" -> {
-                response = helpCommand(request);
+                response = helpCommand();
             }
 //            case "/deadlines" -> deadlinesCommand();
 //            case "/address" -> addressCommand();
@@ -34,7 +34,7 @@ public class Handler {
 //            case "/delevent" -> Command.delEvent();
 //            case "/changeevent" -> Command.changeEvent();
             default -> {
-                response = unknownCommand(request);
+                response = unknownCommand();
             }
         }
 
@@ -42,7 +42,7 @@ public class Handler {
     }
 
     private static Response startCommand(Request request) {
-//        registerUser(reqest);
+        registerUser(request);
         String startMessage =
                 """
                 <b>Привет! Я - бот Планер.</b>
@@ -52,7 +52,7 @@ public class Handler {
         return new Response(startMessage, false);
     }
 
-    private static Response helpCommand(Request request) {
+    private static Response helpCommand() {
         String startMessage =
                 """
                 <b>Бот-планер предназначен для планирования имеющихся у вас задач и мероприятий</b>
@@ -62,7 +62,7 @@ public class Handler {
         return new Response(startMessage, true);
     }
 
-    private static Response unknownCommand(Request request) {
+    private static Response unknownCommand() {
         String defaultMessage =
                 """
                 <b>Я не знаю такой команды.</b> Доступные команды перечислены в Меню или по команде /help

@@ -6,18 +6,18 @@ package core;
 public class Response {
 
     private final String responseText;
-    private final Boolean buttonsFlag;
+    private final boolean isButtonsShown;
 
     public Response(String text, Boolean flag) {
         this.responseText = text;
-        this.buttonsFlag = flag;
+        this.isButtonsShown = flag;
     }
 
     public String getResponse() {
         return responseText;
     }
 
-    public Boolean getButtonsFlag() {
-        return buttonsFlag;
+    public Boolean getButtonsShown() {
+        return isButtonsShown;
     }
 }

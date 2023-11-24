@@ -4,10 +4,7 @@ package telegramBot;
 import core.Handler;
 import core.Request;
 import core.Response;
-import lombok.Data;
-import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
-import org.springframework.scheduling.annotation.EnableScheduling;
+import org.springframework.stereotype.Component;
 import org.telegram.telegrambots.bots.TelegramLongPollingBot;
 import org.telegram.telegrambots.meta.api.methods.commands.SetMyCommands;
 import org.telegram.telegrambots.meta.api.methods.send.SendMessage;
@@ -21,17 +18,10 @@ import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
 import java.util.ArrayList;
 import java.util.List;
 
-@Configuration
-@EnableScheduling
-@Data
-@PropertySource("application.properties")
+@Component
 public class Bot extends TelegramLongPollingBot {
 
-//    @Value("${bot.name}")
-//    String botName;
-//    @Value("${bot.token}")
-//    String botToken;
-
+    final BotConfig config;
 
     @Override
     public void onUpdateReceived(Update update) {
@@ -50,10 +40,9 @@ public class Bot extends TelegramLongPollingBot {
         sendMessage.enableHtml(true);
 
 
-        if (response.getButtonsFlag()){
+        if (response.getButtonsShown()){
             sendMessage.setReplyMarkup(keyboardButtons());
         }
-
         try{
             this.execute(sendMessage);
         } catch (TelegramApiException e) {
@@ -77,17 +66,26 @@ public class Bot extends TelegramLongPollingBot {
         return keyboardMarkup;
     }
 
+//    @Override
+//    public String getBotUsername() {
+//        return "individual_planner_bot";
+//    }
+//    @Override
+//    public String getBotToken(){
+//        return "6564881301:AAHgSDGBgRoLdrnt7Bl-1LZWmBfW5F9hZzE";
+//    }
     @Override
     public String getBotUsername() {
-        return "individual_planner_bot";
+        return config.getBotName();
     }
 
     @Override
     public String getBotToken(){
-        return "6564881301:AAHgSDGBgRoLdrnt7Bl-1LZWmBfW5F9hZzE";
+        return config.getBotToken();
     }
 
-    public Bot(){
+    public Bot(BotConfig config){
+        this.config = config;
         List<BotCommand> listofCommands = new ArrayList<>();
         listofCommands.add(new BotCommand("/start","начать работу с ботом"));
         listofCommands.add(new BotCommand("/help","справка по работе с ботом"));

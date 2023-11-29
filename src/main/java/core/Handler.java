@@ -13,6 +13,8 @@ public class Handler {
 
     @Autowired
     private static UserRepository userRepository;
+//    UserRepository userRepository = context.getBean(UserRepository.class);
+
 
     public static Response handle(Request request) {
 

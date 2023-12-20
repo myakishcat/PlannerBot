@@ -1,20 +1,17 @@
 package core;
 
-import model.User;
-import model.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import model.H2Server;
+import model.H2Create;
 
-import java.sql.Timestamp;
+
+import java.sql.SQLException;
 
 /**
  * класс обрабатывает запрос от пользователя и возвращает ответ на него
  */
 public class Handler {
 
-    @Autowired
-    private static UserRepository userRepository;
-
-    public static Response handle(Request request) {
+    public static Response handle(Request request) throws SQLException {
 
         Response response = null;
         switch (request.getRequestText()) {
@@ -41,8 +38,9 @@ public class Handler {
         return response;
     }
 
-    private static Response startCommand(Request request) {
-//        registerUser(reqest);
+    private static Response startCommand (Request request) throws SQLException {
+        H2Server.main();
+        H2Create.main(SqlQueries.createTableSQL);
         String startMessage =
                 """
                 <b>Привет! Я - бот Планер.</b>
@@ -52,7 +50,8 @@ public class Handler {
         return new Response(startMessage, false);
     }
 
-    private static Response helpCommand(Request request) {
+    private static Response helpCommand(Request request) throws SQLException {
+        H2Create.main(SqlQueries.createTableSQL);
         String startMessage =
                 """
                 <b>Бот-планер предназначен для планирования имеющихся у вас задач и мероприятий</b>
@@ -70,15 +69,15 @@ public class Handler {
         return new Response(defaultMessage, false);
     }
 
-    private static void registerUser(Request request) {
-
-        if(userRepository.findById(request.getChatId()).isEmpty()){
-            User user = new User(request.getChatId(), new Timestamp(System.currentTimeMillis()));
-            user.setFirstName(request.getChat().getFirstName());
-            user.setLastName(request.getChat().getLastName());
-            user.setUserName(request.getChat().getUserName());
-
-            userRepository.save(user);
-        }
-    }
+//    private static void registerUser(Request request) {
+//
+//        if(userRepository.findById(request.getChatId()).isEmpty()){
+//            User user = new User(request.getChatId(), new Timestamp(System.currentTimeMillis()));
+//            user.setFirstName(request.getChat().getFirstName());
+//            user.setLastName(request.getChat().getLastName());
+//            user.setUserName(request.getChat().getUserName());
+//
+//            userRepository.save(user);
+//        }
+//    }
 }

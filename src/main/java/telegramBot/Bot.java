@@ -5,6 +5,7 @@ import core.Handler;
 import core.Request;
 import core.Response;
 import lombok.Data;
+import model.H2JDBCUtils;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.scheduling.annotation.EnableScheduling;
@@ -18,6 +19,8 @@ import org.telegram.telegrambots.meta.api.objects.commands.scope.BotCommandScope
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.ReplyKeyboardMarkup;
 import org.telegram.telegrambots.meta.api.objects.replykeyboard.buttons.KeyboardRow;
 import org.telegram.telegrambots.meta.exceptions.TelegramApiException;
+
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,7 +47,13 @@ public class Bot extends TelegramLongPollingBot {
         Chat chat = update.getMessage().getChat();
 
         Request request = new Request(text, chatId, chat);
-        Response response = Handler.handle(request);
+        Response response = null;
+        try {
+            response = Handler.handle(request);
+        } catch (SQLException e) {
+            // print SQL exception information
+            H2JDBCUtils.printSQLException(e);
+        }
 
         SendMessage sendMessage = new SendMessage(chatId.toString(), response.getResponse());
         sendMessage.enableHtml(true);
